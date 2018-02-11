@@ -64,7 +64,7 @@ Instrumentation, in this context, is the process of slightly modifying an applic
 	$test->CopyTo("main");
 ```
 
-Here the example switches to the previously extracted "initial" test (NOTE:  Extracting doesn't switch tests).  Then it modifies (instruments) two parts of the file `tests/initial/install.php` by finding and replacing the first match the function comes across.  If the file doesn't exist, instrumentation fails, testing fails, and an error is emitted.  The `instruments` directory of this repository contain two specific instrumenting files:  One for PHP and one for Javascript.  The Javascript file is intended for use with a real web browser (e.g. to see the application for yourself) and will write Javascript console errors back to PHP so that the test can fail.
+Here the example switches to the previously extracted "initial" test (NOTE:  Extracting doesn't switch tests).  Then it modifies (instruments) two parts of the file `tests/initial/install.php` by finding and replacing the first match the function comes across.  If the file doesn't exist, instrumentation fails, testing fails, and an error is emitted.  The `instruments` directory of this repository contain two primary instrumenting files:  One for PHP and one for Javascript.  The Javascript file is intended for use with a real web browser (e.g. to see the application for yourself) and will write Javascript console errors back to PHP so that the test be logged.
 
 Once instrumentation is complete, the entire `tests/initial` directory structure is cloned to `tests/main`.  This will allow the entire application to be reverted multiple times later on and see the application in various critical states with a real web browser if there are problems.
 
