@@ -9,7 +9,7 @@ Features
 --------
 
 * A single PHP class called WebTest which you use to write some basic PHP code.
-* Just one script is all you need to write to perform complete product verification in as little code as possible.  Get complete code coverage in as little as a few hundred lines of code.
+* Just one PHP script is all you need to write to perform complete product verification.  Get complete code coverage for most applications in as little as a few hundred lines of code.
 * Multiple environment cloning support (clone, test one path, and later completely revert to a previous state).
 * Instrumented builds.  Modify `.php` and other files in specific ways to avoid adding hacks to the original software to enable testing.
 * DOM verification.  Verify that specific DOM elements exist at various points in time.
