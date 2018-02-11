@@ -134,4 +134,4 @@ I generally tell an installer to use SQLite as the backend database for my test 
 
 The goal of a test suite written with a tool like this is to execute the maximum number of lines of code with the fewest number of lines of code.  Toward that end, I walk through an application looking for major sections of code that haven't been added to the test suite, figure out how to test a few hundred lines with just two lines of code, add them, and usually toss in an `exit();` after I insert the test(s) to make sure they are passing.  Once all looks good, the `exit();` is removed and the test suite is run again to make sure that all tests still pass.
 
-Be sure to read the documentation for the WebTest class.  The class is also only about 400 lines of code long, so it's not anything particularly special even if it is extremely useful.
+Be sure to read the documentation for the [WebTest class](https://github.com/cubiclesoft/php-web-tester/blob/master/docs/web_test.md).  The class itself is also only about 400 lines of code long, so it's not anything particularly special even if it is extremely useful.
