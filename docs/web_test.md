@@ -156,6 +156,28 @@ Returns:  A string containing the base URL used for the constructor plus the cur
 
 This function returns the current base test URL.  This can be useful if a web form needs a URL referencing a test path on the machine.
 
+WebTest::ClearInstrumentLogs()
+------------------------------
+
+Access:  public
+
+Parameters:  None.
+
+Returns:  Nothing.
+
+This function clears/removes the registered instrumenation logs.
+
+WebTest::ProcessInstrumentLogs()
+--------------------------------
+
+Access:  public
+
+Parameters:  None.
+
+Returns:  A boolean of true if the instrumentation logs are empty, false otherwise.
+
+This function processes the registered instrumentation logs for errors.  If any are found, an error message will be emitted (and the current test will fail).
+
 WebTest::Run($url, $profile = "auto", $options = array(), $usephantomjs = false)
 --------------------------------------------------------------------------------
 

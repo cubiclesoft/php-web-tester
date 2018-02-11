@@ -220,11 +220,36 @@
 			return $this->baseurl . ($this->currtest !== false ? "/" . $this->currtest : "");
 		}
 
+		public function ClearInstrumentLogs()
+		{
+			if ($this->currtest === false || $this->testinfo[$this->currtest]["error"] !== false)  return;
+
+			foreach ($this->testinfo[$this->currtest]["instrumentlogs"] as $logfile)  @unlink($logfile);
+		}
+
+		public function ProcessInstrumentLogs()
+		{
+			if ($this->currtest === false)  return false;
+
+			foreach ($this->testinfo[$this->currtest]["instrumentlogs"] as $logfile)
+			{
+				if (file_exists($logfile))
+				{
+					$data = trim(file_get_contents($logfile));
+					@unlink($logfile);
+
+					if ($data !== "")  return $this->Error("The instrumented log '" . $logfile . "' contains error information:\n\n" . $data . "\n", "log_instrument_error");
+				}
+			}
+
+			return true;
+		}
+
 		public function Run($url, $profile = "auto", $options = array(), $usephantomjs = false)
 		{
 			if ($this->currtest === false || $this->testinfo[$this->currtest]["error"] !== false)  return false;
 
-			foreach ($this->testinfo[$this->currtest]["instrumentlogs"] as $logfile)  @unlink($logfile);
+			$this->ClearInstrumentLogs();
 
 			$url = HTTP::ConvertRelativeToAbsoluteURL($this->baseurl . "/" . $this->currtest . "/", $url);
 
@@ -244,16 +269,7 @@
 				if (!$result["success"])  return $this->Error("A WebBrowser class or HTTP error occurred:  " . $result["error"] . " (" . $result["errorcode"] . ")", "run_webbrowser_error");
 				else if ((int)$result["response"]["code"] !== 200)  return $this->Error("The server responded with " . $result["response"]["line"], "run_server_error");
 
-				foreach ($this->testinfo[$this->currtest]["instrumentlogs"] as $logfile)
-				{
-					if (file_exists($logfile))
-					{
-						$data = trim(file_get_contents($logfile));
-						@unlink($logfile);
-
-						if ($data !== "")  return $this->Error("The instrumented log '" . $logfile . "' contains error information:\n\n" . $data . "\n", "run_instrument_error");
-					}
-				}
+				if (!$this->ProcessInstrumentLogs())  return false;
 
 				$this->Message("Running '" . $url . "' - finished.", "run_finish");
 
