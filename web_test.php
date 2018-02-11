@@ -266,8 +266,18 @@
 				$this->Message("Running '" . $url . "' - started (WebBrowser)." . (isset($options["postvars"]) ? "\n" . var_export($options["postvars"], true) : ""), "run_start");
 
 				$result = $this->testinfo[$this->currtest]["web"]->Process($url, $profile, $options);
-				if (!$result["success"])  return $this->Error("A WebBrowser class or HTTP error occurred:  " . $result["error"] . " (" . $result["errorcode"] . ")", "run_webbrowser_error");
-				else if ((int)$result["response"]["code"] !== 200)  return $this->Error("The server responded with " . $result["response"]["line"], "run_server_error");
+				if (!$result["success"])
+				{
+					$this->ProcessInstrumentLogs();
+
+					return $this->Error("A WebBrowser class or HTTP error occurred:  " . $result["error"] . " (" . $result["errorcode"] . ")", "run_webbrowser_error");
+				}
+				else if ((int)$result["response"]["code"] !== 200)
+				{
+					$this->ProcessInstrumentLogs();
+
+					return $this->Error("The server responded with " . $result["response"]["line"], "run_server_error");
+				}
 
 				if (!$this->ProcessInstrumentLogs())  return false;
 
