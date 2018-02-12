@@ -245,7 +245,7 @@
 			return true;
 		}
 
-		public function Run($url, $profile = "auto", $options = array(), $usephantomjs = false)
+		public function Run($url, $profile = "auto", $options = array(), $expected = 200, $usephantomjs = false)
 		{
 			if ($this->currtest === false || $this->testinfo[$this->currtest]["error"] !== false)  return false;
 
@@ -272,7 +272,7 @@
 
 					return $this->Error("A WebBrowser class or HTTP error occurred:  " . $result["error"] . " (" . $result["errorcode"] . ")", "run_webbrowser_error");
 				}
-				else if ((int)$result["response"]["code"] !== 200)
+				else if ((int)$result["response"]["code"] != $expected)
 				{
 					$this->ProcessInstrumentLogs();
 

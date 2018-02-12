@@ -178,8 +178,8 @@ Returns:  A boolean of true if the instrumentation logs are empty, false otherwi
 
 This function processes the registered instrumentation logs for errors.  If any are found, an error message will be emitted (and the current test will fail).
 
-WebTest::Run($url, $profile = "auto", $options = array(), $usephantomjs = false)
---------------------------------------------------------------------------------
+WebTest::Run($url, $profile = "auto", $options = array(), $expected = 200, $usephantomjs = false)
+-------------------------------------------------------------------------------------------------
 
 Access:  public
 
@@ -188,6 +188,7 @@ Parameters:
 * $url - A string containing a relative URL.
 * $profile - A string containing an empty string, "auto", or a valid GetWebUserAgent() string (Default is "auto").
 * $options - An array containing options to use for only this set of requests (Default is array()).
+* $expected - An integer containing the expected response code.
 * $usephantomjs - A boolean of false (this feature is not implemented, Default is false).
 
 Returns:  A boolean of false for failed states, otherwise an array containing the results of the call.
