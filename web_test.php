@@ -245,7 +245,7 @@
 			return true;
 		}
 
-		public function Run($url, $profile = "auto", $options = array(), $expected = 200, $usephantomjs = false)
+		public function Run($url, $options = array(), $expected = 200, $usephantomjs = false)
 		{
 			if ($this->currtest === false || $this->testinfo[$this->currtest]["error"] !== false)  return false;
 
@@ -265,7 +265,7 @@
 			{
 				$this->Message("Running '" . $url . "' - started (WebBrowser)." . (isset($options["postvars"]) ? "\n" . var_export($options["postvars"], true) : ""), "run_start");
 
-				$result = $this->testinfo[$this->currtest]["web"]->Process($url, $profile, $options);
+				$result = $this->testinfo[$this->currtest]["web"]->Process($url, $options);
 				if (!$result["success"])
 				{
 					$this->ProcessInstrumentLogs();
