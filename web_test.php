@@ -94,7 +94,7 @@
 					if ($filedata === false)  return $this->Error("An error occurred while reading '" . $name . "'.", "extractzip_filereaderror");
 					else
 					{
-						$dirpath = dirname($name);
+						$dirpath = str_replace("\\", "/", dirname($name));
 						if ($dirpath != "" && $dirpath != ".")
 						{
 							@mkdir($this->testdir . "/" . $destname . "/" . $dirpath, 0777, true);
