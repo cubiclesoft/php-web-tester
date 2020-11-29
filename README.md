@@ -5,7 +5,7 @@ An ultra lightweight testing framework for creating repeatable, instrumented bui
 
 Most PHP frameworks that I've run into are typically big, bloated affairs designed for unit testing libraries rather than whole applications.  I'm sure they are useful but they don't fit my particular needs.  What I needed was a tool for building an installable package out of a directory tree (e.g. a proposed release ZIP file of one of the larger CubicleSoft PHP software products) and then using the package to create isolated live (i.e. no mocks), fully instrumented, fully scripted environments, and running many, many web requests against a localhost web server.  Behind the scenes, the Ultimate Web Scraper Toolkit does the heavy lifting of testing an entire web application prior to software release.  This tool is designed for those who create large open source PHP-based software products intended for deployment by other people and where maintaining sanity is important.  It didn't really exist, so I made it.  You're welcome.
 
-[![Donate](https://cubiclesoft.com/res/donate-shield.png)](https://cubiclesoft.com/donate/)
+[![Donate](https://cubiclesoft.com/res/donate-shield.png)](https://cubiclesoft.com/donate/) [![Discord](https://img.shields.io/discord/777282089980526602?label=chat&logo=discord)](https://cubiclesoft.com/product-support/github/)
 
 Features
 --------
